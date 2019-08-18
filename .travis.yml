@@ -1,8 +1,19 @@
+addons:
+  mariadb: '10.1'
 language: java
 dist: trusty
 jdk:
   - openjdk8
+before_install:
+  - wget http://services.gradle.org/distributions/gradle-5.4-bin.zip
+  - unzip -qq gradle-5.4-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-5.4
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - gradle -v
 script:
+  - mysql --user="root" --execute="DROP SCHEMA IF EXISTS demo; CREATE SCHEMA demo;"
+  - mysql -u root demo < src/main/resources/migration/V1.1__create_employee_table.sql
+  - mysql -u root demo < src/main/resources/migration/V1.2__seed_employees.sql
   - gradle clean build test
 before_cache:
   - sudo chown -R travis:travis $HOME/.gradle/caches/modules-2

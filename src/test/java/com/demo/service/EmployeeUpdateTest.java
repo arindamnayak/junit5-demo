@@ -42,7 +42,6 @@ class EmployeeUpdateTest {
                 assertNotNull(employeeService.update(emp));
               } catch (EmployeeException e) {
                 assertTrue(e.getMessage().toLowerCase().contains("error:"));
-                assertTrue(emp.getId() != 1); // All employee except 1 should fail
               }
             }
         ));
