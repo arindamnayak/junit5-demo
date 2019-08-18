@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+}
+apply plugin: 'java'
+apply plugin: 'maven'
+
+
+group = 'junit5-demo'
+version = '1.0.0'
+
+description = 'junit5-demo'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit', module: 'junit'
+    }
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+}
+
+test {
+    useJUnitPlatform()
+}
