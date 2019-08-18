@@ -14,7 +14,7 @@ script:
   - mysql --user="root" --execute="DROP SCHEMA IF EXISTS demo; CREATE SCHEMA demo;"
   - mysql -u root demo < src/main/resources/migration/V1.1__create_employee_table.sql
   - mysql -u root demo < src/main/resources/migration/V1.2__seed_employees.sql
-  - gradle clean build test
+  - gradle build jacocoTestCoverageVerification > build.out
 after_success:
   - chmod +x ./src/main/resources/util_script/pr_comment.sh
   - ./src/main/resources/util_script/pr_comment.sh

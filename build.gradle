@@ -4,12 +4,9 @@ plugins {
     id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
     id 'jacoco'
-    id 'de.jansauer.printcoverage' version '2.0.0'
+    id 'com.github.ksoichiro.console.reporter' version '0.6.2'
 }
 
-printcoverage {
-    coverageType = 'INSTRUCTION'
-}
 
 group = 'junit5-demo'
 version = '1.0.0'
@@ -38,10 +35,5 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    testLogging {
-        // set options for log level LIFECYCLE
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        showStandardStreams true
-    }
     finalizedBy jacocoTestReport
 }
