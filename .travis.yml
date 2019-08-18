@@ -16,6 +16,7 @@ script:
   - mysql -u root demo < src/main/resources/migration/V1.2__seed_employees.sql
   - gradle clean build test
 after_success:
+  - chmod +x ./src/main/resources/util_script/pr_comment.sh
   - ./src/main/resources/util_script/pr_comment.sh
 before_cache:
   - sudo chown -R travis:travis $HOME/.gradle/caches/modules-2
