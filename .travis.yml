@@ -12,9 +12,9 @@ before_install:
   - gradle -v
 script:
   - mysql --user="root" --execute="CREATE SCHEMA IF NOT EXISTS demo_test;"
-  - mysql -u root demo < src/main/resources/migration/V1.1__create_employee_table.sql
-  - mysql -u root demo < src/main/resources/migration/V1.2__seed_employees.sql
-  - gradle clean build test jacocoTestReport reportCoverage jacocoTestCoverageVerification
+  - mysql -u root demo_test < src/main/resources/migration/V1.1__create_employee_table.sql
+  - mysql -u root demo_test < src/main/resources/migration/V1.2__seed_employees.sql
+  - gradle clean build test
   - gradle check > build.out
 after_success:
   - chmod +x ./src/main/resources/util_script/pr_comment.sh
