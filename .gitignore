@@ -25,4 +25,8 @@ hs_err_pid*
 .gradle
 build
 out
-*/.DS_STORE
+.DS_STORE
+.idea
+*.iml
+*.iws
+*.ipr

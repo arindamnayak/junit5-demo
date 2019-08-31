@@ -11,7 +11,7 @@ before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
   - gradle -v
 script:
-  - mysql --user="root" --execute="DROP SCHEMA IF EXISTS demo; CREATE SCHEMA demo;"
+  - mysql --user="root" --execute="CREATE SCHEMA IF NOT EXISTS demo_test;"
   - mysql -u root demo < src/main/resources/migration/V1.1__create_employee_table.sql
   - mysql -u root demo < src/main/resources/migration/V1.2__seed_employees.sql
   - gradle clean build test
